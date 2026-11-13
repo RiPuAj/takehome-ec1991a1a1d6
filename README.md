@@ -52,7 +52,7 @@ Los esquemas de Zod de `backend/schemas/llmResponse.js` siguen la propuesta que 
 | Registro de seguimiento (trazas) | tabla `traces` | Solo diseñado |
 | Web | — | No desarrollada |
 | Tests | — | No desarrollados |
-| `DECISIONES.md` | — | Pendiente |
+| `DECISIONES.md` | `DECISIONES.md` | Hecho |
 
 ## Decisiones
 
