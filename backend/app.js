@@ -5,6 +5,12 @@ import { createMessagesRouter } from './routes/messages.js';
 import { createConversationsRouter } from './routes/conversations.js';
 import { createProposalsRouter } from './routes/proposals.js';
 
+import { MessageModel } from './models/message.js';
+import { ProposalModel } from './models/proposal.js';
+import { ConversationModel } from './models/conversation.js';
+
+import { LLMService } from './services/llmService.js';
+
 dotenv.config(".env");
 
 const app = express();
@@ -12,9 +18,10 @@ app.use(express.json());
 app.disable('x-powered-by');
 
 // Routes
-app.use('/api/messages',createMessagesRouter());
-app.use('/api/conversations', createConversationsRouter());
-app.use('/api/proposals', createProposalsRouter());
+const llmService = new LLMService();
+app.use('/api/messages',createMessagesRouter({ MessageModel, ProposalModel, llmService }));
+app.use('/api/conversations', createConversationsRouter({ConversationModel}));
+app.use('/api/proposals', createProposalsRouter({ ProposalModel }));
 
 app.get('/', (req, res) => {
   res.send('<h1>Welcome to the backend server!</h1>');
