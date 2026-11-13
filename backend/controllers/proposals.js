@@ -1,11 +1,13 @@
+import fs from 'fs';
+import path from 'path';
+import {getAllPoliciesDocuments} from "../utils.js";
+
 export class ProposalsController{
 
-    postProposal = async (req, res) => {
-        const token = req.header.authorization;
-        console.log("Token:", token);
-
-        res.json({ message: "Proposal received successfully" });
+    constructor() {
+        this.policies = getAllPoliciesDocuments();
     }
+
 
     getProposals = async (req, res) => {
         const token = req.header.authorization;
